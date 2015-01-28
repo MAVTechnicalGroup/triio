@@ -3,12 +3,12 @@ package org.mavtechnicalgroup.triio.data;
 import java.util.Date;
 
 /**
- * Common info about a "Person" to be the super class
- * for TraditionalPerson and FraternityPerson data containers
+ * Common info about a "FamilyMember" to be the super class
+ * for TraditionalFamilyMember and FraternityFamilyMember data containers
  * @author Anthony Haddox
  *
  */
-public abstract class Person {
+public abstract class FamilyMember {
 	private String firstName;
 	private String lastName;
 	private String middleName;
@@ -16,7 +16,7 @@ public abstract class Person {
 	
 	private Date dateOfBirth;
 	
-	public Person()	{
+	public FamilyMember()	{
 		firstName = "";
 		lastName = "";
 		middleName = "";
@@ -24,7 +24,7 @@ public abstract class Person {
 		dateOfBirth = null;
 	}
 	
-	public Person(String fn, String ln, String mn, String g, Date d)	{
+	public FamilyMember(String fn, String ln, String mn, String g, Date d)	{
 		firstName = fn;
 		lastName = ln;
 		middleName = ln;
@@ -32,7 +32,7 @@ public abstract class Person {
 		dateOfBirth = d;
 	}
 	
-	public Person(String fn, String ln, String mn, String g)	{
+	public FamilyMember(String fn, String ln, String mn, String g)	{
 		firstName = fn;
 		lastName = ln;
 		middleName = mn;
@@ -40,7 +40,7 @@ public abstract class Person {
 		dateOfBirth = null;
 	}
 	
-	public Person(String fn, String ln, String g)	{
+	public FamilyMember(String fn, String ln, String g)	{
 		firstName = fn;
 		lastName = ln;
 		middleName = "";
