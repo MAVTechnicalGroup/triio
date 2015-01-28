@@ -6,6 +6,7 @@ import java.util.Date;
 /**
  * Data container to be used for TraditionalTree structures
  * @author Anthony Haddox
+ * @author Michelle Chuong
  *
  */
 public class TraditionalFamilyMember extends FamilyMember {
