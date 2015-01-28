@@ -6,6 +6,7 @@ import java.util.Date;
  * Common info about a "FamilyMember" to be the super class
  * for TraditionalFamilyMember and FraternityFamilyMember data containers
  * @author Anthony Haddox
+ * @author Michelle Chuong
  *
  */
 public abstract class FamilyMember {
@@ -16,7 +17,7 @@ public abstract class FamilyMember {
 	
 	private Date dateOfBirth;
 	
-	public FamilyMember()	{
+	public FamilyMember() {
 		firstName = "";
 		lastName = "";
 		middleName = "";
@@ -24,7 +25,7 @@ public abstract class FamilyMember {
 		dateOfBirth = null;
 	}
 	
-	public FamilyMember(String fn, String ln, String mn, String g, Date d)	{
+	public FamilyMember(String fn, String ln, String mn, String g, Date d) {
 		firstName = fn;
 		lastName = ln;
 		middleName = ln;
@@ -32,7 +33,7 @@ public abstract class FamilyMember {
 		dateOfBirth = d;
 	}
 	
-	public FamilyMember(String fn, String ln, String mn, String g)	{
+	public FamilyMember(String fn, String ln, String mn, String g) {
 		firstName = fn;
 		lastName = ln;
 		middleName = mn;
@@ -40,7 +41,7 @@ public abstract class FamilyMember {
 		dateOfBirth = null;
 	}
 	
-	public FamilyMember(String fn, String ln, String g)	{
+	public FamilyMember(String fn, String ln, String g) {
 		firstName = fn;
 		lastName = ln;
 		middleName = "";
@@ -48,30 +49,30 @@ public abstract class FamilyMember {
 		dateOfBirth = null;
 	}
 	
-	public String getFirstName()	{	return firstName;	}
-	public String getLastName()	{	return lastName;	}
-	public String getMiddleName()	{	return middleName;	}
-	public String getGender()	{	return gender;	}
+	public String getFirstName() { return firstName; }
+	public String getLastName() { return lastName; }
+	public String getMiddleName() {	return middleName; }
+	public String getGender() { return gender; }
 	
-	public Date getDateOfBirth()	{	return dateOfBirth;	}
+	public Date getDateOfBirth() { return dateOfBirth; }
 	
-	public void setFirstName(String fn)	{
+	public void setFirstName(String fn) {
 		firstName = fn;
 	}
 	
-	public void setLastName(String ln)	{
+	public void setLastName(String ln) {
 		lastName = ln;
 	}
 	
-	public void setMiddleName(String mn)	{
+	public void setMiddleName(String mn) {
 		middleName = mn;
 	}
 	
-	public void setGender(String g)	{
+	public void setGender(String g) {
 		gender = g;
 	}
 	
-	public void setDateOfBirth(Date d)	{
+	public void setDateOfBirth(Date d) {
 		dateOfBirth = d;
 	}
 }
