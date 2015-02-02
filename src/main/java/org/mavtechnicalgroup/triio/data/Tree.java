@@ -57,7 +57,7 @@ public abstract class Tree {
 	
 	//Search by UID
     	public FamilyMember find(String uid) {
-        	return map.get(uid);
+        	return nodeMap.get(uid);
     	}
 	
 	private String generateUID() {
