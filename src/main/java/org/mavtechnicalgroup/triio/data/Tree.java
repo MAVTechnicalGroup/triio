@@ -25,31 +25,31 @@ public abstract class Tree {
 	}
 	
 	//Adding to tree
-    	public void add(String fn, String ln, String mn, String g, Date d) {
-    		FamilyMember member = new FamilyMember(fn, ln, mn, g, d);
-	   	nodeMap.put(member.generateUID, member);
-    	}
+    public void add(String fn, String ln, String mn, String g, Date d) {
+    	FamilyMember member = new FamilyMember(fn, ln, mn, g, d);
+	   	nodeMap.put(member.getUID(), member);
+    }
 	
 	//Adding to tree
 	public void add(String fn, String ln, String mn, String g) {
 		FamilyMember member = new FamilyMember(fn, ln, mn, g);
-	     	nodeMap.put(member.generateUID), member);
-    	}
+	  	nodeMap.put(member.getUID(), member);
+    }
 	
 	//Adding to tree
-    	public void add(String fn, String ln, String g) {
-        	FamilyMember member = new FamilyMember(fn, ln, g);
-        	nodeMap.put(member.generateUID, member);
-    	}
+    public void add(String fn, String ln, String g) {
+        FamilyMember member = new FamilyMember(fn, ln, g);
+        nodeMap.put(member.getUID(), member);
+    }
 	
 	//Adding to tree
-    	public void add(FamilyMember source) {
-        	nodeMap.put(source.generateUID, source);
-    	}
+    public void add(FamilyMember source) {
+       	nodeMap.put(source.getUID(), source);
+    }
 	
 	//Remove from tree
     	public void remove(FamilyMember source) {
-        	nodeMap.remove(source.getUID);
+        	nodeMap.remove(source.getUID());
     	}
 	
 	//Search by First Name & Last Name

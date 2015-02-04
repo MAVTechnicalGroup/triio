@@ -1,6 +1,7 @@
 package org.mavtechnicalgroup.triio.data;
 
 import java.util.Date;
+import java.util.Random;
 
 /**
  * Common info about a "FamilyMember" to be the super class
@@ -10,6 +11,7 @@ import java.util.Date;
  *
  */
 public abstract class FamilyMember {
+	private String UID;
 	private String firstName;
 	private String lastName;
 	private String middleName;
@@ -18,6 +20,7 @@ public abstract class FamilyMember {
 	private Date dateOfBirth;
 	
 	public FamilyMember() {
+		UID = generateUID();
 		firstName = "";
 		lastName = "";
 		middleName = "";
@@ -26,6 +29,7 @@ public abstract class FamilyMember {
 	}
 	
 	public FamilyMember(String fn, String ln, String mn, String g, Date d) {
+		UID = generateUID();
 		firstName = fn;
 		lastName = ln;
 		middleName = ln;
@@ -34,6 +38,7 @@ public abstract class FamilyMember {
 	}
 	
 	public FamilyMember(String fn, String ln, String mn, String g) {
+		UID = generateUID();
 		firstName = fn;
 		lastName = ln;
 		middleName = mn;
@@ -42,6 +47,7 @@ public abstract class FamilyMember {
 	}
 	
 	public FamilyMember(String fn, String ln, String g) {
+		UID = generateUID();
 		firstName = fn;
 		lastName = ln;
 		middleName = "";
@@ -49,6 +55,7 @@ public abstract class FamilyMember {
 		dateOfBirth = null;
 	}
 	
+	public String getUID() { return UID; }
 	public String getFirstName() { return firstName; }
 	public String getLastName() { return lastName; }
 	public String getMiddleName() {	return middleName; }
@@ -74,5 +81,37 @@ public abstract class FamilyMember {
 	
 	public void setDateOfBirth(Date d) {
 		dateOfBirth = d;
+	}
+	
+	private String generateUID() {
+		String out = "";
+		for(int ndx = 0; ndx < 16; ndx++) {
+			Random rand = new Random();
+			if(rand.nextInt() % 2 == 0)
+				out += addNum();
+			else
+				out += addChar();
+		}
+		return out;
+	}
+	
+	/**
+	 * Returns a random char from A-Z
+	 * 90 == ASCII Z Value
+	 * 65 == ASCII A Value
+	 * @return Random Char
+	 */
+	private char addChar() {
+		Random rand = new Random();
+		return Character.toChars(rand.nextInt((90 - 65) + 1) + 65)[0];
+	}
+	
+	/**
+	 * Returns a random integer from 0-9
+	 * @return Random integer
+	 */
+	private int addNum() {
+		Random rand = new Random();
+		return rand.nextInt(10);
 	}
 }
