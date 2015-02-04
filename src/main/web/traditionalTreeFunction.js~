@@ -1,6 +1,0 @@
-function addUser() {
-	var firstName = $('#input_firstName').val();
-	var lastName = $('#input_lastName').val();
-	var middleName = $('#input_middleName').val();
-	var gender = $('#input_gender').val();
-}
