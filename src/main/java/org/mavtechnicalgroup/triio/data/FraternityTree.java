@@ -14,11 +14,11 @@ public class FraternityTree extends Tree {
   //Search by Family
   //public FraternityFamilyMember find(String fam) {
   
-  }
+  //}
   
   //Search by Line
   //public FraternityFamilyMember find(String line) {
   
-  }
+  //}
   
 }

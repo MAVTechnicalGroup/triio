@@ -1,7 +1,8 @@
 package org.mavtechnicalgroup.triio.data;
 
 import java.util.ArrayList;
-import java.util.Date;
+
+import org.mavtechnicalgroup.triio.data.Date;
 
 /**
  * Data container to be used for FraternityTree structures

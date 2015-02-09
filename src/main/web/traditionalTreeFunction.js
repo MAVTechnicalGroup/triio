@@ -17,9 +17,9 @@ function addUser() {
 					"lastName" : lastName,
 					"middleName" : middleName,
 					"gender" : gender,
-					/*"dd" : dd,
+					"dd" : dd,
 					"mm" : mm.
-					"yyyy" : yyyy*/
+					"yyyy" : yyyy
 				},
 				
 				success : function(result) {

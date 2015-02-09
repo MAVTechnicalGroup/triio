@@ -1,7 +1,8 @@
 package org.mavtechnicalgroup.triio.data;
 
-import java.util.Date;
 import java.util.Random;
+
+import org.mavtechnicalgroup.triio.data.Date;
 
 /**
  * Common info about a "FamilyMember" to be the super class
@@ -34,7 +35,7 @@ public abstract class FamilyMember {
 		lastName = ln;
 		middleName = ln;
 		gender = g;
-		dateOfBirth = d;
+		dateOfBirth = new Date(d);
 	}
 	
 	public FamilyMember(String fn, String ln, String mn, String g) {
@@ -53,6 +54,15 @@ public abstract class FamilyMember {
 		middleName = "";
 		gender = g;
 		dateOfBirth = null;
+	}
+	
+	public FamilyMember(FamilyMember fam) {
+		UID = fam.UID;
+		firstName = fam.firstName;
+		lastName = fam.lastName;
+		middleName = fam.middleName;
+		gender = fam.gender;
+		dateOfBirth = new Date(fam.dateOfBirth);
 	}
 	
 	public String getUID() { return UID; }
