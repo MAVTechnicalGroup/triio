@@ -48,17 +48,18 @@ public abstract class Tree {
     }
 	
 	//Remove from tree
-    	public void remove(FamilyMember source) {
-        	nodeMap.remove(source.getUID());
-    	}
+    public void remove(FamilyMember source) {
+        nodeMap.remove(source.getUID());
+    }
 	
 	//Search by First Name & Last Name
-	//public FamilyMember find(String first, String last)
-	
+    //public FamilyMember find(String first, String last) {
+
+    
 	//Search by UID
-    	public FamilyMember find(String uid) {
-        	return nodeMap.get(uid);
-    	}
+    public FamilyMember find(String uid) {
+        return nodeMap.get(uid);
+    }
 	
 	private String generateUID() {
 		Random rnd = new Random();
