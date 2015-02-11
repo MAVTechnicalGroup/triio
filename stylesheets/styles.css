@@ -11,6 +11,10 @@ footer {
 	text-align: center;
 }
 
+footer hr {
+	witdh: 75%;
+}
+
 .container_wrapper {
 	width: 960px;
 	margin: 0 auto;
