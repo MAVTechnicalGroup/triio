@@ -1,4 +1,4 @@
-function addUser() {
+function addTraditionalFamilyMember() {
 	var firstName = $('#input_firstName').val();
 	var lastName = $('#input_lastName').val();
 	var middleName = $('#input_middleName').val();
@@ -34,4 +34,30 @@ function addUser() {
 	else {
 		alert("Invalid First Name, Last Name, or Gender");
 	}					
+}
+
+function removeTraditionalFamilyMember(uid) {
+	var uid = $('#input_uid').val();
+	
+	if(uid) {
+		$.ajax(
+			{
+				type : "DELETE",
+				url : "/tree/traditional/",
+				data: {
+					"uid" : uid
+				},
+				
+				success : function(result) {
+					location.reload();
+				},
+				
+				error : function(jqXHR, exception) {
+					alert("The UID entered was not found. Cannot delete Family Member.");
+				}
+			});
+	}
+	else {
+		alert("Please enter a UID.");
+	}
 }
