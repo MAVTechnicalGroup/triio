@@ -44,21 +44,28 @@ public abstract class Tree {
 	
 	//Adding to tree
     public void add(FamilyMember source) {
-       	nodeMap.put(source.getUID(), source);
+    	nodeMap.put(source.getUID(), source);
     }
 	
 	//Remove from tree
     public void remove(FamilyMember source) {
         nodeMap.remove(source.getUID());
     }
+    
+    public void remove(String uid) {
+    	nodeMap.remove(uid.toUpperCase());
+    }
 	
 	//Search by First Name & Last Name
     public FamilyMember find(String first, String last) {
+    	FamilyMember foundMember = null;
     	for (String key : nodeMap.keySet()) {
             if (nodeMap.get(key).getFirstName().equals(first.toUpperCase()) &&
-                nodeMap.get(key).getLastName().equals(last.toUpperCase()))
-                return NodeMap.get(key);
+                nodeMap.get(key).getLastName().equals(last.toUpperCase())) {
+                foundMember = nodeMap.get(key);
+            }
         }
+    	return foundMember;
     }
 
 

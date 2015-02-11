@@ -8,7 +8,7 @@ import java.util.Random;
 public class TraditionalTree extends Tree {
   
   public TraditionalTree() {
-  
+	  super();
   }
   
 }
