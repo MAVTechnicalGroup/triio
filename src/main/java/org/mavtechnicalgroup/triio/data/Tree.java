@@ -27,7 +27,7 @@ public abstract class Tree {
 	//Adding to tree
     public void add(String fn, String ln, String mn, String g, Date d) {
     	//FamilyMember member = new FamilyMember(fn, ln, mn, g, d);
-	   //	nodeMap.put(member.getUID(), member);
+		//nodeMap.put(member.getUID(), member);
     }
 	
 	//Adding to tree
@@ -54,7 +54,7 @@ public abstract class Tree {
 	
 	//Search by First Name & Last Name
     public FamilyMember find(String first, String last) {
-        for (String key : nodeMap.keySet()) {
+    	for (String key : nodeMap.keySet()) {
             if (nodeMap.get(key).getFirstName().equals(first.toUpperCase()) &&
                 nodeMap.get(key).getLastName().equals(last.toUpperCase()))
                 return NodeMap.get(key);
