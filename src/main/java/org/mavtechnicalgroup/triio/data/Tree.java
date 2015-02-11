@@ -55,8 +55,8 @@ public abstract class Tree {
 	//Search by First Name & Last Name
     public FamilyMember find(String first, String last) {
         for (String key : nodeMap.keySet()) {
-            if (nodeMap.get(key).getFirstName().equals(first) &&
-                nodeMap.get(key).getLastName().equals(last))
+            if (nodeMap.get(key).getFirstName().equals(first.toUpperCase()) &&
+                nodeMap.get(key).getLastName().equals(last.toUpperCase()))
                 return NodeMap.get(key);
         }
     }
