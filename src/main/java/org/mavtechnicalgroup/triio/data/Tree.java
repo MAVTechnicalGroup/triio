@@ -26,20 +26,20 @@ public abstract class Tree {
 	
 	//Adding to tree
     public void add(String fn, String ln, String mn, String g, Date d) {
-    	FamilyMember member = new FamilyMember(fn, ln, mn, g, d);
-	   	nodeMap.put(member.getUID(), member);
+    	//FamilyMember member = new FamilyMember(fn, ln, mn, g, d);
+	   //	nodeMap.put(member.getUID(), member);
     }
 	
 	//Adding to tree
 	public void add(String fn, String ln, String mn, String g) {
-		FamilyMember member = new FamilyMember(fn, ln, mn, g);
-	  	nodeMap.put(member.getUID(), member);
+		//FamilyMember member = new FamilyMember(fn, ln, mn, g);
+	  	//nodeMap.put(member.getUID(), member);
     }
 	
 	//Adding to tree
     public void add(String fn, String ln, String g) {
-        FamilyMember member = new FamilyMember(fn, ln, g);
-        nodeMap.put(member.getUID(), member);
+        //FamilyMember member = new FamilyMember(fn, ln, g);
+        //nodeMap.put(member.getUID(), member);
     }
 	
 	//Adding to tree
@@ -58,7 +58,7 @@ public abstract class Tree {
     
 	//Search by UID
     public FamilyMember find(String uid) {
-        return nodeMap.get(uid);
+        return nodeMap.get(uid.toUpperCase());
     }
 	
 	private String generateUID() {

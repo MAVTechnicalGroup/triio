@@ -47,6 +47,15 @@ public abstract class FamilyMember {
 		dateOfBirth = null;
 	}
 	
+	public FamilyMember(String fn, String ln, String g, Date d) {
+		UID = generateUID();
+		firstName = fn;
+		lastName = ln;
+		middleName = "";
+		gender = g;
+		dateOfBirth = new Date(d);
+	}
+	
 	public FamilyMember(String fn, String ln, String g) {
 		UID = generateUID();
 		firstName = fn;
@@ -62,7 +71,10 @@ public abstract class FamilyMember {
 		lastName = fam.lastName;
 		middleName = fam.middleName;
 		gender = fam.gender;
-		dateOfBirth = new Date(fam.dateOfBirth);
+		if(fam.dateOfBirth != null)
+			dateOfBirth = new Date(fam.dateOfBirth);
+		else
+			dateOfBirth = null;
 	}
 	
 	public String getUID() { return UID; }

@@ -35,6 +35,38 @@ public class FraternityFamilyMember extends FamilyMember {
 		littles = null;
 	}
 	
+	public FraternityFamilyMember(FraternityFamilyMember source) {
+		super(source);
+		
+		chapter = source.chapter;
+		family = source.family;
+		line = source.line;
+		crossingClass = source.crossingClass;
+		crossingDate = source.crossingDate;
+		
+		if(source.big != null)
+			big = new FraternityFamilyMember(source.big);
+		else
+			big = null;
+		
+		if(source.littles != null) {
+			littles = new ArrayList<FraternityFamilyMember>();
+			for(FraternityFamilyMember lit : source.littles)
+				littles.add(new FraternityFamilyMember(lit));
+		}
+		else
+			littles = null;
+		
+		if(source.siblings != null) {
+			siblings = new ArrayList<FraternityFamilyMember>();
+			for(FraternityFamilyMember sib : source.siblings)
+				siblings.add(new FraternityFamilyMember(sib));
+		}
+		else
+			siblings = null;
+				
+	}
+	
 	public FraternityFamilyMember(String fn, String ln, String mn, String g, Date d) {
 		super(fn, ln, mn, g, d);
 		
@@ -51,6 +83,19 @@ public class FraternityFamilyMember extends FamilyMember {
 	
 	public FraternityFamilyMember(String fn, String ln, String mn, String g) {
 		super(fn, ln, mn, g);
+		chapter = "";
+		family = "";
+		line = "";
+		crossingClass = "";
+		crossingDate = "";
+		
+		big = null;
+		siblings = new ArrayList<FraternityFamilyMember>();
+		littles = new ArrayList<FraternityFamilyMember>();
+	}
+	
+	public FraternityFamilyMember(String fn, String ln, String g, Date d) {
+		super(fn, ln, g, d);
 		chapter = "";
 		family = "";
 		line = "";
@@ -125,46 +170,97 @@ public class FraternityFamilyMember extends FamilyMember {
 	
 	public void setBig(FraternityFamilyMember b) {
 		big = b;
+		big.addLittles(this);
+		
+		for(FraternityFamilyMember sib : big.littles) {
+			addSiblings(sib);
+			sib.addSiblings(this);
+		}
 	}
 	
 	public void addSiblings(FraternityFamilyMember s) {
+		if(siblings == null)
+			siblings = new ArrayList<FraternityFamilyMember>();
+		if(siblings.contains(s))
+			return;
 		siblings.add(s);
+		if(siblings.contains(this))
+			siblings.remove(this);
 	}
 	
 	public void addSiblings(ArrayList<FraternityFamilyMember> siblingList) {
-		for(FraternityFamilyMember sibling : siblingList)
-			siblings.add(sibling);
+		if(siblings == null)
+			siblings = new ArrayList<FraternityFamilyMember>();
+		for(FraternityFamilyMember sibling : siblingList) {
+			addSiblings(sibling);
+			if(sibling.siblings == null)
+				sibling.siblings = new ArrayList<FraternityFamilyMember>();
+			sibling.addSiblings(this);
+			sibling.siblings.addAll(siblingList);
+			sibling.siblings.remove(sibling);
+
+		}
+		
 	}
 	
 	public void addLittles(FraternityFamilyMember l) {
+		if(littles == null)
+			littles = new ArrayList<FraternityFamilyMember>();
 		littles.add(l);
+		if(l.big != this)
+			l.big = this;
+		for(FraternityFamilyMember sib : littles) {
+			if(sib != l) {
+				l.addSiblings(sib);
+				sib.addSiblings(l);
+			}
+		}
 	}
 	
 	public void addLittles(ArrayList<FraternityFamilyMember> littlesList) {
 		for(FraternityFamilyMember little : littlesList)
-			littles.add(little);
+			addLittles(little);
 	}
 	
 	public void removeBig() {
+		FraternityFamilyMember temp = this;
+		big.littles.remove(this);
+		if(siblings != null) {
+			for(FraternityFamilyMember sib : big.littles)
+				sib.removeSiblings(temp);
+			for(FraternityFamilyMember sib : big.littles)
+				removeSiblings(sib);
+		}
 		big = null;
 	}
 	
 	public void removeSiblings(FraternityFamilyMember s) {
+		if(siblings == null)
+			return;
 		siblings.remove(s);
 	}
 	
 	public void removeSiblings(ArrayList<FraternityFamilyMember> siblingList) {
+		if(siblings == null)
+			return;
 		for(FraternityFamilyMember sibling : siblingList)
 			siblings.remove(sibling);
 	}
 	
 	public void removeLittles(FraternityFamilyMember l) {
+		if(littles == null)
+			return;
+		l.removeBig();
 		littles.remove(l);
 	}
 	
 	public void removeLittles(ArrayList<FraternityFamilyMember> littlesList) {
-		for(FraternityFamilyMember little : littlesList)
+		if(littles == null)
+			return;
+		for(FraternityFamilyMember little : littlesList) {
 			littles.remove(little);
+			little.removeBig();
+		}
 	}
 	
 	public String getChapter() { return chapter; }

@@ -6,7 +6,9 @@ public class Date {
 	private int year;
 	
 	public Date() {
-		day = month = year = 0;
+		day = 0;
+		month = 0;
+		year = 0;
 	}
 	
 	public Date(int dd, int mm, int yyyy) {
