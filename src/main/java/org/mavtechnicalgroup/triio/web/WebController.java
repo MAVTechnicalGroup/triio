@@ -20,6 +20,7 @@ public class WebController {
 		TraditionalFamilyMember member = new TraditionalFamilyMember(fn, ln, mn, gen, new Date(day, month, year));
 		//tree.add(member);
 	}
-		
+	
+	//@RequestMapping(value = "/tree/fraternity/", method = RequestMethod.POST)
 	
 }
