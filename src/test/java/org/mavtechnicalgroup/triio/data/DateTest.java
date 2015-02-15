@@ -46,4 +46,34 @@ public class DateTest {
 		assertEquals(date1.getMonth(), date2.getMonth());
 		assertEquals(date1.getYear(), date2.getYear());
 	}
+	
+	@Test
+	public void toStringTest() {
+		Date date = new Date(1, 1, 1990);
+		System.out.println(date);
+		date = new Date(2, 2, 1990);
+		System.out.println(date);
+		date = new Date(3, 3, 1990);
+		System.out.println(date);
+		date = new Date(4, 4, 1990);
+		System.out.println(date);
+		date.setMonth(5);
+		System.out.println(date);
+		date.setMonth(6);
+		System.out.println(date);
+		date.setMonth(7);
+		System.out.println(date);
+		date.setMonth(8);
+		System.out.println(date);
+		date.setMonth(9);
+		System.out.println(date);
+		date.setMonth(10);
+		System.out.println(date);
+		date.setMonth(11);
+		System.out.println(date);
+		date.setMonth(12);
+		System.out.println(date);
+		date = new Date();
+		System.out.println(date);
+	}
 }
