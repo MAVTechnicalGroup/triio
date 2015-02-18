@@ -2,6 +2,9 @@ package org.mavtechnicalgroup.triio.data;
 
 import java.lang.StringBuilder;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Date {
 	private int day;
 	private int month;

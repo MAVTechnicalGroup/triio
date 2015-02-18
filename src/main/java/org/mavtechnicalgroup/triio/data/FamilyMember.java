@@ -2,6 +2,8 @@ package org.mavtechnicalgroup.triio.data;
 
 import java.util.Random;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 import org.mavtechnicalgroup.triio.data.Date;
 
 /**
@@ -11,6 +13,7 @@ import org.mavtechnicalgroup.triio.data.Date;
  * @author Michelle Chuong
  *
  */
+@XmlRootElement
 public abstract class FamilyMember {
 	private String UID;
 	private String firstName;

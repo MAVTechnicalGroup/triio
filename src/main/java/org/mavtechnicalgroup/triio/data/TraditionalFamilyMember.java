@@ -2,6 +2,8 @@ package org.mavtechnicalgroup.triio.data;
 
 import java.util.ArrayList;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 import org.mavtechnicalgroup.triio.data.Date;
 
 /**
@@ -10,6 +12,7 @@ import org.mavtechnicalgroup.triio.data.Date;
  * @author Michelle Chuong
  *
  */
+@XmlRootElement
 public class TraditionalFamilyMember extends FamilyMember {
 	private ArrayList<TraditionalFamilyMember> mother;
 	private ArrayList<TraditionalFamilyMember> father;

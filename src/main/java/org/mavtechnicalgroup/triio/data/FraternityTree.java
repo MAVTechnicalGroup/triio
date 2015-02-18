@@ -1,9 +1,6 @@
 package org.mavtechnicalgroup.triio.data;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * 
@@ -11,6 +8,7 @@ import java.util.Random;
  * @author Anthony Haddox
  * 
  */
+@XmlRootElement
 public class FraternityTree extends Tree {
   
   public FraternityTree() {

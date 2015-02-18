@@ -1,9 +1,11 @@
 package org.mavtechnicalgroup.triio.data;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Common info about a "Tree" to be the super class
@@ -15,8 +17,12 @@ import java.util.Random;
  * @author Michelle Chuong
  *
  */
+
+@XmlRootElement
 public abstract class Tree {
+	@XmlElement
 	private String UID;
+	@XmlElement
 	private Map<String, FamilyMember> nodeMap;
 	
 	public Tree() {
@@ -24,23 +30,23 @@ public abstract class Tree {
 		nodeMap = new HashMap<String, FamilyMember>();
 	}
 	
-	//Adding to tree
+	/*//Adding to tree
     public void add(String fn, String ln, String mn, String g, Date d) {
-    	//FamilyMember member = new FamilyMember(fn, ln, mn, g, d);
-		//nodeMap.put(member.getUID(), member);
+    	FamilyMember member = new FamilyMember(fn, ln, mn, g, d);
+		nodeMap.put(member.getUID(), member);
     }
 	
 	//Adding to tree
 	public void add(String fn, String ln, String mn, String g) {
-		//FamilyMember member = new FamilyMember(fn, ln, mn, g);
-	  	//nodeMap.put(member.getUID(), member);
+		FamilyMember member = new FamilyMember(fn, ln, mn, g);
+	  	nodeMap.put(member.getUID(), member);
     }
 	
 	//Adding to tree
     public void add(String fn, String ln, String g) {
-        //FamilyMember member = new FamilyMember(fn, ln, g);
-        //nodeMap.put(member.getUID(), member);
-    }
+        FamilyMember member = new FamilyMember(fn, ln, g);
+        nodeMap.put(member.getUID(), member);
+    }*/
 	
 	//Adding to tree
     public void add(FamilyMember source) {
