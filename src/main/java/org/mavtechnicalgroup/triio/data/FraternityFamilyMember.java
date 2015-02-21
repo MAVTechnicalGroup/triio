@@ -2,27 +2,15 @@ package org.mavtechnicalgroup.triio.data;
 
 import java.util.ArrayList;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
-import org.mavtechnicalgroup.triio.data.Date;
-
-/**
- * Data container to be used for FraternityTree structures
- * @author Anthony Haddox
- * @author Michelle Chuong
- *
- */
-@XmlRootElement
 public class FraternityFamilyMember extends FamilyMember {
 	private String chapter;
 	private String family;
 	private String line;
 	private String crossingClass;
 	private String crossingDate;
+	private String big;
 	
-	private FraternityFamilyMember big;
-	private ArrayList<FraternityFamilyMember> siblings;
-	private ArrayList<FraternityFamilyMember> littles;
+	private ArrayList<String> littles;
 	
 	public FraternityFamilyMember()	{
 		super();
@@ -33,8 +21,7 @@ public class FraternityFamilyMember extends FamilyMember {
 		crossingClass = "";
 		crossingDate = "";
 		
-		big = null;
-		siblings = null;
+		big = "";
 		littles = null;
 	}
 	
@@ -47,27 +34,19 @@ public class FraternityFamilyMember extends FamilyMember {
 		crossingClass = source.crossingClass;
 		crossingDate = source.crossingDate;
 		
-		if(source.big != null)
-			big = new FraternityFamilyMember(source.big);
+		if(!source.big.equals(""))
+			big = source.big;
 		else
-			big = null;
+			big = "";
 		
 		if(source.littles != null) {
-			littles = new ArrayList<FraternityFamilyMember>();
-			for(FraternityFamilyMember lit : source.littles)
-				littles.add(new FraternityFamilyMember(lit));
+			littles = new ArrayList<String>();
+			for(String lit : source.littles)
+				littles.add(lit);
 		}
 		else
 			littles = null;
-		
-		if(source.siblings != null) {
-			siblings = new ArrayList<FraternityFamilyMember>();
-			for(FraternityFamilyMember sib : source.siblings)
-				siblings.add(new FraternityFamilyMember(sib));
-		}
-		else
-			siblings = null;
-				
+
 	}
 	
 	public FraternityFamilyMember(String fn, String ln, String mn, String g, Date d) {
@@ -79,9 +58,8 @@ public class FraternityFamilyMember extends FamilyMember {
 		crossingClass = "";
 		crossingDate = "";
 		
-		big = null;
-		siblings = new ArrayList<FraternityFamilyMember>();
-		littles = new ArrayList<FraternityFamilyMember>();
+		big = "";
+		littles = new ArrayList<String>();
 	}
 	
 	public FraternityFamilyMember(String fn, String ln, String mn, String g) {
@@ -92,9 +70,8 @@ public class FraternityFamilyMember extends FamilyMember {
 		crossingClass = "";
 		crossingDate = "";
 		
-		big = null;
-		siblings = new ArrayList<FraternityFamilyMember>();
-		littles = new ArrayList<FraternityFamilyMember>();
+		big = "";
+		littles = new ArrayList<String>();
 	}
 	
 	public FraternityFamilyMember(String fn, String ln, String g, Date d) {
@@ -105,9 +82,8 @@ public class FraternityFamilyMember extends FamilyMember {
 		crossingClass = "";
 		crossingDate = "";
 		
-		big = null;
-		siblings = new ArrayList<FraternityFamilyMember>();
-		littles = new ArrayList<FraternityFamilyMember>();
+		big = "";
+		littles = new ArrayList<String>();
 	}
 	
 	public FraternityFamilyMember(String fn, String ln, String g) {
@@ -118,9 +94,8 @@ public class FraternityFamilyMember extends FamilyMember {
 		crossingClass = "";
 		crossingDate = "";
 		
-		big = new FraternityFamilyMember();
-		siblings = new ArrayList<FraternityFamilyMember>();
-		littles = new ArrayList<FraternityFamilyMember>();
+		big = "";
+		littles = new ArrayList<String>();
 	}
 	
 	public FraternityFamilyMember(String fn, String ln, String mn, String g, FraternityFamilyMember big) {
@@ -132,9 +107,8 @@ public class FraternityFamilyMember extends FamilyMember {
 		crossingClass = "";
 		crossingDate = "";
 		
-		this.big = big;
-		addSiblings(big);
-		littles = new ArrayList<FraternityFamilyMember>();
+		this.big = big.getUID();
+		littles = new ArrayList<String>();
 	}
 	
 	public FraternityFamilyMember(String fn, String ln, String g, FraternityFamilyMember big) {
@@ -146,9 +120,8 @@ public class FraternityFamilyMember extends FamilyMember {
 		crossingClass = "";
 		crossingDate = "";
 		
-		this.big = big;
-		addSiblings(big);
-		littles = new ArrayList<FraternityFamilyMember>();
+		this.big = big.getUID();
+		littles = new ArrayList<String>();
 	}
 	
 	public void setChapter(String ch) {
@@ -172,97 +145,42 @@ public class FraternityFamilyMember extends FamilyMember {
 	}
 	
 	public void setBig(FraternityFamilyMember b) {
-		big = b;
-		big.addLittles(this);
-		
-		for(FraternityFamilyMember sib : big.littles) {
-			addSiblings(sib);
-			sib.addSiblings(this);
-		}
-	}
-	
-	public void addSiblings(FraternityFamilyMember s) {
-		if(siblings == null)
-			siblings = new ArrayList<FraternityFamilyMember>();
-		if(siblings.contains(s))
-			return;
-		siblings.add(s);
-		if(siblings.contains(this))
-			siblings.remove(this);
-	}
-	
-	public void addSiblings(ArrayList<FraternityFamilyMember> siblingList) {
-		if(siblings == null)
-			siblings = new ArrayList<FraternityFamilyMember>();
-		for(FraternityFamilyMember sibling : siblingList) {
-			addSiblings(sibling);
-			if(sibling.siblings == null)
-				sibling.siblings = new ArrayList<FraternityFamilyMember>();
-			sibling.addSiblings(this);
-			sibling.siblings.addAll(siblingList);
-			sibling.siblings.remove(sibling);
-
-		}
-		
+		big = b.getUID();
+		b.addLittles(this);
 	}
 	
 	public void addLittles(FraternityFamilyMember l) {
 		if(littles == null)
-			littles = new ArrayList<FraternityFamilyMember>();
-		littles.add(l);
-		if(l.big != this)
-			l.big = this;
-		for(FraternityFamilyMember sib : littles) {
-			if(sib != l) {
-				l.addSiblings(sib);
-				sib.addSiblings(l);
-			}
-		}
+			littles = new ArrayList<String>();
+		if(littles.contains(l.getUID()))
+			return;
+		littles.add(l.getUID());
+		if(!l.getBig().equals(this.getUID()))
+			l.setBig(this);
 	}
 	
-	public void addLittles(ArrayList<FraternityFamilyMember> littlesList) {
-		for(FraternityFamilyMember little : littlesList)
-			addLittles(little);
+	public void addLittles(ArrayList<String> littlesList) {
+		for(String little : littlesList)
+			littles.add(little);
 	}
 	
+	//Does not remove the big's reference to this
 	public void removeBig() {
-		FraternityFamilyMember temp = this;
-		big.littles.remove(this);
-		if(siblings != null) {
-			for(FraternityFamilyMember sib : big.littles)
-				sib.removeSiblings(temp);
-			for(FraternityFamilyMember sib : big.littles)
-				removeSiblings(sib);
-		}
-		big = null;
-	}
-	
-	public void removeSiblings(FraternityFamilyMember s) {
-		if(siblings == null)
-			return;
-		siblings.remove(s);
-	}
-	
-	public void removeSiblings(ArrayList<FraternityFamilyMember> siblingList) {
-		if(siblings == null)
-			return;
-		for(FraternityFamilyMember sibling : siblingList)
-			siblings.remove(sibling);
+		big = "";
 	}
 	
 	public void removeLittles(FraternityFamilyMember l) {
 		if(littles == null)
 			return;
 		l.removeBig();
-		littles.remove(l);
+		littles.remove(l.getUID());
 	}
 	
-	public void removeLittles(ArrayList<FraternityFamilyMember> littlesList) {
+	public void removeLittles(ArrayList<String> littlesList) {
 		if(littles == null)
 			return;
-		for(FraternityFamilyMember little : littlesList) {
+		for(String little : littlesList) {
 			littles.remove(little);
-			little.removeBig();
 		}
 	}
 	
@@ -272,7 +190,7 @@ public class FraternityFamilyMember extends FamilyMember {
 	public String getCrossingClass() { return crossingClass; }
 	public String getCrossingDate()	{ return crossingDate; }
 	
-	public FraternityFamilyMember getBig() { return big; }
-	public ArrayList<FraternityFamilyMember> getSiblings() { return siblings; }
-	public ArrayList<FraternityFamilyMember> getLittles() {	return littles; }
+	public String getBig() { return big; }
+	public ArrayList<String> getLittles() {	return littles; }
+
 }

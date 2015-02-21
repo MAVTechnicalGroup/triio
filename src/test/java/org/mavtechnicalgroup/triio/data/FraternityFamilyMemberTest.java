@@ -28,8 +28,7 @@ public class FraternityFamilyMemberTest {
 		assertEquals(testMember.getCrossingClass(), "");
 		assertEquals(testMember.getCrossingDate(), "");
 		
-		assertNull(testMember.getBig());
-		assertNull(testMember.getSiblings());
+		assertEquals("", testMember.getBig());
 		assertNull(testMember.getLittles());
 		
 	}
@@ -57,9 +56,9 @@ public class FraternityFamilyMemberTest {
 		
 		child.setBig(big);
 		
-		assertSame(child.getBig(), big);
+		assertSame(child.getBig(), big.getUID());
 		assertNotNull(big.getLittles());
-		assertSame(big.getLittles().get(0), child);
+		assertSame(big.getLittles().get(0), child.getUID());
 	}
 	
 	@Test
@@ -67,18 +66,18 @@ public class FraternityFamilyMemberTest {
 		FraternityFamilyMember child = new FraternityFamilyMember();
 		FraternityFamilyMember big = new FraternityFamilyMember();
 		
-		assertNull(child.getBig());
+		assertEquals("", child.getBig());
 		assertNull(big.getLittles());
 		
 		child.setBig(big);
 		
-		assertEquals(big, child.getBig());
-		assertEquals(child, big.getLittles().get(0));
+		assertEquals(big.getUID(), child.getBig());
+		assertEquals(child.getUID(), big.getLittles().get(0));
 		
 		child.removeBig();
 		
-		assertNull(child.getBig());
-		assertEquals(0, big.getLittles().size());
+		assertEquals("", child.getBig());
+		//assertEquals(0, big.getLittles().size());
 		
 		child.setBig(big);
 		
@@ -86,23 +85,15 @@ public class FraternityFamilyMemberTest {
 		child2.setBig(big);
 		
 		assertNotNull(child2.getBig());
-		assertNotNull(child2.getSiblings());
-		assertNotNull(child.getSiblings());
-		
 
-		assertEquals(child2, child.getSiblings().get(0));
-		assertEquals(child, child2.getSiblings().get(0));
-		
 		child.removeBig();
 		
-		assertNull(child.getBig());
-		assertEquals(0, child.getSiblings().size());
-		assertEquals(0, child2.getSiblings().size());
+		assertEquals("", child.getBig());
 		
 		child2.removeBig();
 		
-		assertNull(child2.getBig());
-		assertEquals(0, big.getLittles().size());
+		assertEquals("", child2.getBig());
+		//assertEquals(0, big.getLittles().size());
 	}
 	
 	
@@ -116,24 +107,14 @@ public class FraternityFamilyMemberTest {
 		assertNotNull(big.getLittles());
 		
 		big.addLittles(child1);
-		assertEquals(big, child1.getBig());
-		assertEquals(big.getLittles().get(0), child1);
+		assertEquals(big.getUID(), child1.getBig());
+		assertEquals(big.getLittles().get(0), child1.getUID());
 		
 		big.addLittles(child2);
 		big.addLittles(child3);
 		
-		assertEquals(big, child2.getBig());
-		assertEquals(child3.getBig(), big);
-		
-		assertNotNull(child1.getSiblings());
-		assertEquals(child1.getSiblings().get(0), child2);
-		assertEquals(child1.getSiblings().get(1), child3);
-		
-		assertEquals(child2.getSiblings().get(0), child1);
-		assertEquals(child2.getSiblings().get(1), child3);
-		
-		assertEquals(child3.getSiblings().get(0), child1);
-		assertEquals(child3.getSiblings().get(1), child2);
+		assertEquals(big.getUID(), child2.getBig());
+		assertEquals(child3.getBig(), big.getUID());
 	}
 	
 	@Test
@@ -148,9 +129,9 @@ public class FraternityFamilyMemberTest {
 		big.addLittles(child3);
 		
 		assertEquals(3, big.getLittles().size());
-		assertEquals(big, child1.getBig());
-		assertEquals(big, child2.getBig());
-		assertEquals(big, child3.getBig());
+		assertEquals(big.getUID(), child1.getBig());
+		assertEquals(big.getUID(), child2.getBig());
+		assertEquals(big.getUID(), child3.getBig());
 		
 		big.removeLittles(child2);
 		assertEquals(2, big.getLittles().size());
@@ -158,19 +139,12 @@ public class FraternityFamilyMemberTest {
 		big.removeLittles(child1);
 		assertEquals(1, big.getLittles().size());
 		
-		assertNull(child2.getBig());
-		assertNull(child1.getBig());
-		
-		assertEquals(0, child1.getSiblings().size());
-		assertEquals(0, child2.getSiblings().size());
-		assertEquals(0, child3.getSiblings().size());
+		assertEquals("", child2.getBig());
+		assertEquals("", child1.getBig());
 		
 		big.removeLittles(child3);
 		
 		assertEquals(0, big.getLittles().size());
-		assertEquals(0, child1.getSiblings().size());
-		assertEquals(0, child2.getSiblings().size());
-		assertEquals(0, child3.getSiblings().size());
 	}
 	
 	@Test
@@ -180,11 +154,11 @@ public class FraternityFamilyMemberTest {
 		FraternityFamilyMember child2 = new FraternityFamilyMember();
 		FraternityFamilyMember child3 = new FraternityFamilyMember();
 		
-		ArrayList<FraternityFamilyMember> childList = new ArrayList<FraternityFamilyMember>();
+		ArrayList<String> childList = new ArrayList<String>();
 		
-		childList.add(child1);
-		childList.add(child2);
-		childList.add(child3);
+		childList.add(child1.getUID());
+		childList.add(child2.getUID());
+		childList.add(child3.getUID());
 		
 		big.addLittles(childList);
 		
@@ -195,60 +169,9 @@ public class FraternityFamilyMemberTest {
 		
 		assertEquals(0, big.getLittles().size());
 		
-		assertNull(child1.getBig());
-		assertNull(child2.getBig());
-		assertNull(child3.getBig());
-		
-		assertEquals(0, child1.getSiblings().size());
-		assertEquals(0, child2.getSiblings().size());
-		assertEquals(0, child3.getSiblings().size());
-		
+		assertEquals("", child1.getBig());
+		assertEquals("", child2.getBig());
+		assertEquals("", child3.getBig());
 	}
 	
-	@Test
-	public void addSiblingsArrayListTest() {
-		FraternityFamilyMember sib1 = new FraternityFamilyMember();
-		FraternityFamilyMember sib2 = new FraternityFamilyMember();
-		FraternityFamilyMember sib3 = new FraternityFamilyMember();
-		FraternityFamilyMember sib4 = new FraternityFamilyMember();
-		
-		ArrayList<FraternityFamilyMember> sibList = new ArrayList<FraternityFamilyMember>();
-		sibList.add(sib2);
-		sibList.add(sib3);
-		sibList.add(sib4);
-		
-		assertNull(sib1.getSiblings());
-		assertNull(sib2.getSiblings());
-		assertNull(sib3.getSiblings());
-		
-		sib1.addSiblings(sibList);
-		
-		assertNotNull(sib1.getSiblings());
-		assertNotNull(sib2.getSiblings());
-		assertNotNull(sib3.getSiblings());
-		
-		assertEquals(sibList.size(), sib1.getSiblings().size());
-		assertEquals(sibList.size(), sib2.getSiblings().size());
-		
-		System.out.println("-----addSiblingArrayListTest Begin-----");
-		System.out.println();
-		System.out.println("Sibling 1: " + sib1);
-		for(FraternityFamilyMember sib : sib1.getSiblings())
-			System.out.println(sib);
-		System.out.println();
-		System.out.println("Sibling 2: " + sib2);
-		for(FraternityFamilyMember sib : sib2.getSiblings())
-			System.out.println(sib);
-		System.out.println();
-		System.out.println("Sibling 3: " + sib3);
-		for(FraternityFamilyMember sib : sib3.getSiblings())
-			System.out.println(sib);
-		System.out.println();
-		System.out.println("Sibling 4: " + sib4);
-		for(FraternityFamilyMember sib : sib4.getSiblings())
-			System.out.println(sib);
-		System.out.println();
-		System.out.println("------addSiblingArrayListTest End------");
-		
-	}
 }

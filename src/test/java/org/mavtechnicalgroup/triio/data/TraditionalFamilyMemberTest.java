@@ -54,8 +54,8 @@ public class TraditionalFamilyMemberTest {
 		
 		child.addFather(father);
 		
-		assertEquals(father, child.getFather().get(0));
-		assertEquals(child, father.getChildren().get(0));
+		assertEquals(father.getUID(), child.getFather().get(0));
+		assertEquals(child.getUID(), father.getChildren().get(0));
 	}
 	
 	@Test
@@ -65,8 +65,8 @@ public class TraditionalFamilyMemberTest {
 		
 		child.addFather(father);
 		
-		assertEquals(father, child.getFather().get(0));
-		assertEquals(child, father.getChildren().get(0));
+		assertEquals(father.getUID(), child.getFather().get(0));
+		assertEquals(child.getUID(), father.getChildren().get(0));
 		
 		child.removeFather(father);
 		assertEquals(0, child.getFather().size());
@@ -80,8 +80,8 @@ public class TraditionalFamilyMemberTest {
 		
 		child.addMother(mother);
 		
-		assertEquals(mother, child.getMother().get(0));
-		assertEquals(child, mother.getChildren().get(0));
+		assertEquals(mother.getUID(), child.getMother().get(0));
+		assertEquals(child.getUID(), mother.getChildren().get(0));
 	}
 	
 	@Test
@@ -91,8 +91,8 @@ public class TraditionalFamilyMemberTest {
 		
 		child.addMother(mother);
 		
-		assertEquals(mother, child.getMother().get(0));
-		assertEquals(child, mother.getChildren().get(0));
+		assertEquals(mother.getUID(), child.getMother().get(0));
+		assertEquals(child.getUID(), mother.getChildren().get(0));
 		
 		child.removeMother(mother);
 		
@@ -109,8 +109,8 @@ public class TraditionalFamilyMemberTest {
 		father.addChildren(child);
 		mother.addChildren(child);
 		
-		assertEquals(child, father.getChildren().get(0));
-		assertEquals(child, mother.getChildren().get(0));
+		assertEquals(child.getUID(), father.getChildren().get(0));
+		assertEquals(child.getUID(), mother.getChildren().get(0));
 		
 		//Does not test if addChildren() sets the mother/father
 		//assertNull(child.getFather());

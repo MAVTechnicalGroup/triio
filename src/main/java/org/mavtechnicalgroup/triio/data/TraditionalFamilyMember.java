@@ -2,8 +2,6 @@ package org.mavtechnicalgroup.triio.data;
 
 import java.util.ArrayList;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
 import org.mavtechnicalgroup.triio.data.Date;
 
 /**
@@ -12,11 +10,11 @@ import org.mavtechnicalgroup.triio.data.Date;
  * @author Michelle Chuong
  *
  */
-@XmlRootElement
+
 public class TraditionalFamilyMember extends FamilyMember {
-	private ArrayList<TraditionalFamilyMember> mother;
-	private ArrayList<TraditionalFamilyMember> father;
-	private ArrayList<TraditionalFamilyMember> children;
+	private ArrayList<String> mother;
+	private ArrayList<String> father;
+	private ArrayList<String> children;
 	
 	public TraditionalFamilyMember() {
 		super();
@@ -29,25 +27,25 @@ public class TraditionalFamilyMember extends FamilyMember {
 		super(source);
 		
 		if(source.mother != null) {
-			mother = new ArrayList<TraditionalFamilyMember>();
-			for(TraditionalFamilyMember mom : source.mother) 
-				mother.add(new TraditionalFamilyMember(mom));
+			mother = new ArrayList<String>();
+			for(String mom : source.mother) 
+				mother.add(mom);
 		}
 		else
 			mother = null;
 		
 		if(source.father != null) {
-			father = new ArrayList<TraditionalFamilyMember>();
-			for(TraditionalFamilyMember dad : source.father)
-				father.add(new TraditionalFamilyMember(dad));
+			father = new ArrayList<String>();
+			for(String dad : source.father)
+				father.add(dad);
 		}
 		else
 			father = null;
 		
 		if(source.children != null) {
-			children = new ArrayList<TraditionalFamilyMember>();
-			for(TraditionalFamilyMember child : source.children)
-				children.add(new TraditionalFamilyMember(child));
+			children = new ArrayList<String>();
+			for(String child : source.children)
+				children.add(child);
 		}
 		else
 			children = null;
@@ -55,79 +53,85 @@ public class TraditionalFamilyMember extends FamilyMember {
 	
 	public TraditionalFamilyMember(String fn, String ln, String mn, String g, Date d) {
 		super(fn, ln, mn, g, d);
-		mother = new ArrayList<TraditionalFamilyMember>();
-		father = new ArrayList<TraditionalFamilyMember>();
-		children = new ArrayList<TraditionalFamilyMember>();
+		mother = new ArrayList<String>();
+		father = new ArrayList<String>();
+		children = new ArrayList<String>();
 	}
 	
 	public TraditionalFamilyMember(String fn, String ln, String mn, String g) {
 		super(fn, ln, mn, g);
-		mother = new ArrayList<TraditionalFamilyMember>();
-		father = new ArrayList<TraditionalFamilyMember>();
-		children = new ArrayList<TraditionalFamilyMember>();
+		mother = new ArrayList<String>();
+		father = new ArrayList<String>();
+		children = new ArrayList<String>();
 	}
 	
 	public TraditionalFamilyMember(String fn, String ln, String g, Date d) {
 		super(fn, ln, g, d);
-		mother = new ArrayList<TraditionalFamilyMember>();
-		father = new ArrayList<TraditionalFamilyMember>();
-		children = new ArrayList<TraditionalFamilyMember>();
+		mother = new ArrayList<String>();
+		father = new ArrayList<String>();
+		children = new ArrayList<String>();
 	}
 	
 	public TraditionalFamilyMember(String fn, String ln, String g) {
 		super(fn, ln, g);
-		mother = new ArrayList<TraditionalFamilyMember>();
-		father = new ArrayList<TraditionalFamilyMember>();
-		children = new ArrayList<TraditionalFamilyMember>();
+		mother = new ArrayList<String>();
+		father = new ArrayList<String>();
+		children = new ArrayList<String>();
 	}
 	
 	public void addMother(TraditionalFamilyMember source) {
 		if(mother == null)
-			mother = new ArrayList<TraditionalFamilyMember>();
-		if(mother.contains(source))
+			mother = new ArrayList<String>();
+		if(mother.contains(source.getUID()))
 			return;
-		mother.add(source);
+		mother.add(source.getUID());
 		source.addChildren(this);
 	}
 	
 	public void addFather(TraditionalFamilyMember source) {
 		if(father == null)
-			father = new ArrayList<TraditionalFamilyMember>();
-		if(father.contains(source))
+			father = new ArrayList<String>();
+		if(father.contains(source.getUID()))
 			return;
-		father.add(source);
+		father.add(source.getUID());
 		source.addChildren(this);
 	}
 	
 	//Does not set mother/father
 	public void addChildren(TraditionalFamilyMember source) {
 		if(children == null)
-			children = new ArrayList<TraditionalFamilyMember>();
-		if(children.contains(source))
+			children = new ArrayList<String>();
+		if(children.contains(source.getUID()))
 			return;
-		children.add(source);
+		children.add(source.getUID());
 	}
 	
 	public void removeMother(TraditionalFamilyMember source) {
-		mother.remove(source);
-		source.children.remove(this);
+		if(mother == null)
+			return;
+		mother.remove(source.getUID());
+		source.children.remove(this.getUID());
 	}
 	
 	public void removeFather(TraditionalFamilyMember source) {
-		father.remove(source);
-		source.children.remove(this);
+		if(father == null)
+			return;
+		father.remove(source.getUID());
+		source.children.remove(this.getUID());
 	}
 	
 	public void removeChild(TraditionalFamilyMember source) {
-		children.remove(source);
-		if(source.mother.contains(this))
-			source.mother.remove(this);
-		if(source.father.contains(this))
-			source.father.remove(this);
+		if(children == null)
+			return;
+		children.remove(source.getUID());
+		if(source.mother.contains(this.getUID()))
+			source.mother.remove(this.getUID());
+		if(source.father.contains(this.getUID()))
+			source.father.remove(this.getUID());
 	}
 	
-	public ArrayList<TraditionalFamilyMember> getMother() {	return mother; }
-	public ArrayList<TraditionalFamilyMember> getFather() {	return father; }
-	public ArrayList<TraditionalFamilyMember> getChildren() { return children; }
+	public ArrayList<String> getMother() {	return mother; }
+	public ArrayList<String> getFather() {	return father; }
+	public ArrayList<String> getChildren() { return children; }
 	
 }
