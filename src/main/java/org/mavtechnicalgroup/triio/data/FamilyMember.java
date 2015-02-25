@@ -15,7 +15,7 @@ import org.mavtechnicalgroup.triio.data.Date;
  */
 @XmlRootElement
 public abstract class FamilyMember {
-	private String UID;
+	private String uid;
 	private String firstName;
 	private String lastName;
 	private String middleName;
@@ -24,7 +24,7 @@ public abstract class FamilyMember {
 	private Date dateOfBirth;
 	
 	public FamilyMember() {
-		UID = generateUID();
+		uid = generateUID();
 		firstName = "";
 		lastName = "";
 		middleName = "";
@@ -33,7 +33,7 @@ public abstract class FamilyMember {
 	}
 	
 	public FamilyMember(String fn, String ln, String mn, String g, Date d) {
-		UID = generateUID();
+		uid = generateUID();
 		firstName = fn;
 		lastName = ln;
 		middleName = ln;
@@ -42,7 +42,7 @@ public abstract class FamilyMember {
 	}
 	
 	public FamilyMember(String fn, String ln, String mn, String g) {
-		UID = generateUID();
+		uid = generateUID();
 		firstName = fn;
 		lastName = ln;
 		middleName = mn;
@@ -51,7 +51,7 @@ public abstract class FamilyMember {
 	}
 	
 	public FamilyMember(String fn, String ln, String g, Date d) {
-		UID = generateUID();
+		uid = generateUID();
 		firstName = fn;
 		lastName = ln;
 		middleName = "";
@@ -60,7 +60,7 @@ public abstract class FamilyMember {
 	}
 	
 	public FamilyMember(String fn, String ln, String g) {
-		UID = generateUID();
+		uid = generateUID();
 		firstName = fn;
 		lastName = ln;
 		middleName = "";
@@ -69,7 +69,7 @@ public abstract class FamilyMember {
 	}
 	
 	public FamilyMember(FamilyMember fam) {
-		UID = fam.UID;
+		uid = fam.uid;
 		firstName = fam.firstName;
 		lastName = fam.lastName;
 		middleName = fam.middleName;
@@ -80,7 +80,7 @@ public abstract class FamilyMember {
 			dateOfBirth = null;
 	}
 	
-	public String getUID() { return UID; }
+	public String getUID() { return uid; }
 	public String getFirstName() { return firstName; }
 	public String getLastName() { return lastName; }
 	public String getMiddleName() {	return middleName; }

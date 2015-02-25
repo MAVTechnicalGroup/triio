@@ -6,14 +6,14 @@ import java.util.Map;
 import java.util.Random;
 
 public class FraternityTree {
-	private String UID;
+	private String uid;
 	private Map<String, FraternityFamilyMember> nodeMap;
 	
 	public FraternityTree() {
-		UID = generateUID();
+		uid = generateUID();
 		nodeMap = new HashMap<String, FraternityFamilyMember>();
 	}
-	
+
 	//Adding to tree
     public void add(FraternityFamilyMember source) {
     	nodeMap.put(source.getUID(), source);
@@ -83,7 +83,7 @@ public class FraternityTree {
 		}
 		return out;
 	}
-	
-	public String getUID() { return UID; }
+
+	public String getUID() { return uid; }
 	public Map<String, FraternityFamilyMember> getNodeMap() { return nodeMap; }
 }

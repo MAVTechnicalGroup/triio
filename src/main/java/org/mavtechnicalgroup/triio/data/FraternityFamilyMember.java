@@ -2,6 +2,8 @@ package org.mavtechnicalgroup.triio.data;
 
 import java.util.ArrayList;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class FraternityFamilyMember extends FamilyMember {
 	private String chapter;
 	private String family;
@@ -144,9 +146,14 @@ public class FraternityFamilyMember extends FamilyMember {
 		crossingDate = cDate;
 	}
 	
+	@JsonIgnore
 	public void setBig(FraternityFamilyMember b) {
 		big = b.getUID();
 		b.addLittles(this);
+	}
+	
+	public void setBig(String s) {
+		big = s;
 	}
 	
 	public void addLittles(FraternityFamilyMember l) {
