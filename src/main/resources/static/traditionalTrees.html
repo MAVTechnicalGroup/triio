@@ -6,8 +6,10 @@
         <link rel="stylesheet" type="text/css" media="all" href="bootstrap3.3.2/css/bootstrap.css" />
         <link rel="stylesheet" type="text/css" media="all" href="stylesheets/animate.css" />
         <link rel="stylesheet" type="text/css" media="all" href="stylesheets/hover.css" />
+        
+        <script src="../../web/traditionalTreeFunction.js"></script>
 
-        <title>Triio | Trees</title>
+        <title>Triio | Traditional Trees</title>
     </head>
     
     <body class="container_wrapper">
@@ -32,19 +34,22 @@
 		</header>
 
         <div class="row">
-        	<a href="traditionalTrees.html">
-	            <div class="col-sm-5 jumbotron hvr-fade" style="text-align:center">
-	            	<h1 class="hvr-grow">Traditional Trees</h1>
-	            </div>
-            </a>
-            
-            <div class="col-sm-2"></div>
-            
-            <a href="fraternityTrees.html">
-            	<div class="col-sm-5 jumbotron hvr-fade" style="text-align:center">
-            		<h1 class="hvr-grow">Fraternity Trees</h1>
-           		</div>
-           	</a>
+        	<div class="col-sm-12">
+        		<p>Families  take many forms. Big, small, close-knit, all unique in their own right.</p>
+        	</div>
+        </div>
+        
+        <div class="row"><div class="col-sm-6 col-sm-offset-3"><hr /></div></div>
+        
+        <div class="row">
+        	<div class="col-sm-12">
+        		<p>Want to create your own Traditional Family Tree? <a href="#">Click here</a> to get started.</p>
+        		<p>Already have a tree? Enter your unique ID to view it.</p>
+	        		<form id="findTree">
+	        			<input class="input-sm" type="text" maxlength="16" size="16" required>
+	        			<button class="btn" onclick="findTree()">Submit</button>
+	        		</form>
+        	</div>
         </div>
 
        	<footer class="row">
