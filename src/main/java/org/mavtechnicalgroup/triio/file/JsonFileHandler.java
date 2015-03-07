@@ -57,7 +57,8 @@ public abstract class JsonFileHandler {
 		File inFile = new File("fraternityTree." + source + ".json");
 		if(inFile.exists())	{
 			try
-			{	System.out.println("Looking for Fraternity Tree");
+			{	
+				System.out.println("Looking for Fraternity Tree");
 				FraternityTree returnTree = mapper.readValue(inFile, FraternityTree.class);
 				return returnTree;
 			}

@@ -2,15 +2,16 @@ package org.mavtechnicalgroup.triio.web;
 
 import org.mavtechnicalgroup.triio.data.TraditionalFamilyMember;
 import org.mavtechnicalgroup.triio.data.Date;
-
+import org.mavtechnicalgroup.triio.data.TraditionalTree;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.servlet.ModelAndView;
 import org.mavtechnicalgroup.triio.App;
 import org.mavtechnicalgroup.triio.data.TraditionalFamilyMember;
+import org.mavtechnicalgroup.triio.file.JsonFileHandler;
 
 @RestController
 public class WebController {
@@ -24,6 +25,24 @@ public class WebController {
 		//tree.add(member);
 	}
 	
-	//@RequestMapping(value = "/tree/fraternity/", method = RequestMethod.POST)
+	@RequestMapping(value = "/tree/traditional/create", method = RequestMethod.POST)
+	String createTraditionalTree(@RequestParam("firstName") String fn, @RequestParam("lastName") String ln,
+								 @RequestParam("gender") String gen) {
+		TraditionalTree tree = new TraditionalTree();
+		TraditionalFamilyMember seedMember = new TraditionalFamilyMember(fn, ln, gen);
+		tree.add(seedMember);
+		
+		JsonFileHandler.writeJsonFile(tree);
+		
+		return tree.getUID();
+	}
 	
+	@RequestMapping(value = "tree/traditional/{uid}", method = RequestMethod.GET)
+	ModelAndView loadTraditionalTree(@PathVariable("uid") String uid) {
+		TraditionalTree tree = (TraditionalTree) JsonFileHandler.readJsonFile(uid);
+		ModelAndView modelAndView = new ModelAndView("tree");
+		modelAndView.addObject("tree", tree);
+		System.out.println("loadTree");
+		return modelAndView;
+	}
 }
