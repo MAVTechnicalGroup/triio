@@ -103,12 +103,8 @@ public abstract class JsonFileHandler {
 			{
 				System.out.println("IO");
 				e.printStackTrace();
-				return null;
 			}	
 		}
 		return null;
-		
 	}
-	
-	
 }
