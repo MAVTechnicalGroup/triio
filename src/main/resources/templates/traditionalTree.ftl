@@ -51,7 +51,35 @@
         <div class="row">
         	<div class="col-sm-12">
         		<button class="addMember btn">Add Member</button>
-        		<p>Tree displayed here.</p>
+       			<table class="table table-hover table-striped">
+       				<thead>
+						<tr>
+							<td>Name</td>
+							<td>Gender</td>
+							<td>Mother</td>
+							<td>Father</td>
+						</tr>
+					</tead>
+					<tbody>
+						<#list tree.getNodeMap()?keys as uid>
+							<tr>
+								<td>${tree.getNodeMap()[uid].getFirstName()} ${tree.getNodeMap()[uid].getLastName()}</td>
+								<td>${tree.getNodeMap()[uid].getGender()}</td>
+								<td>
+									<#list tree.getNodeMap()[uid].getMother() as mom>
+										${tree.getNodeMap()[mom].getFirstName()} ${tree.getNodeMap()[mom].getLastName()}
+									</#list>
+								</td>
+								<td>
+									<#list tree.getNodeMap()[uid].getFather() as dad>
+										${tree.getNodeMap()[dad].getFirstName()} ${tree.getNodeMap()[dad].getLastName()}
+									</#list>
+								</td>
+							</tr>
+						</#list>
+					</tbody>
+				</table>
+
 			    <!-- Modal HTML -->
 			    <div id="uidModal" class="modal fade">
 			        <div class="modal-dialog">
@@ -89,7 +117,6 @@
 				                    	<select name="input_mother" class="form-control">
 				                    		<option value=""></option>
 					                    	<#list tree.getNodeMap()?keys as uid>
-					                    		<p>${uid}</p>
 					                    		<option value="${uid}">${tree.getNodeMap()[uid].getFirstName()} ${tree.getNodeMap()[uid].getLastName()}</option>
 					                    	</#list>
 					                    </select>
@@ -97,7 +124,6 @@
 					                    <select name="input_father" class="form-control">
 					                    	<option value=""></option>
 					                    	<#list tree.getNodeMap()?keys as uid>
-					                    		<p>${uid}</p>
 					                    		<option value="${uid}">${tree.getNodeMap()[uid].getFirstName()} ${tree.getNodeMap()[uid].getLastName()}</option>
 					                    	</#list>
 					                    </select>
