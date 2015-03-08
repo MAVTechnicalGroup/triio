@@ -16,6 +16,13 @@
 		$(window).load(function(){
         	$('#uidModal').modal('show');
    		 });
+   		 
+   		 $(document).ready(function(){
+			$(".addMember").click(function(){
+				$("#addMemberModal").modal('show');
+			});
+		});
+   		 
 		</script>
 
         <title>Triio | Traditional Trees</title>
@@ -43,6 +50,7 @@
 
         <div class="row">
         	<div class="col-sm-12">
+        		<button class="addMember btn">Add Member</button>
         		<p>Tree displayed here.</p>
 			    <!-- Modal HTML -->
 			    <div id="uidModal" class="modal fade">
@@ -60,6 +68,46 @@
 			                <div class="modal-footer">
 			                    <button type="button" class="submit btn btn-default" data-dismiss="modal">Close</button>			                </div>
 			            	</div>
+			        </div>
+			    </div>
+			    
+			    
+			    <div id="addMemberModal" class="modal fade">
+			        <div class="modal-dialog">
+			            <div class="modal-content">
+			                <div class="modal-header">
+			                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			                    <h4 class="modal-title">Add Member</h4>
+			                </div>
+			                <div class="modal-body">
+			                    <form>
+			                    	<p>First Name: <input class="input-sm" type="text" name="input_firstName" required></p>
+			                    	<p>Middle Name: <input class="input-sm" type="text" name="input_middleName"></p>
+			                    	<p>Last Name: <input class="input-sm" type="text" name="input_lastName" required></p>
+			                    	<p>Gender: <input class="input-sm" type="text" name="input_gender" required></p>
+			                    	<p>Mother:
+				                    	<select name="input_mother" class="form-control">
+				                    		<option value=""></option>
+					                    	<#list tree.getNodeMap()?keys as uid>
+					                    		<p>${uid}</p>
+					                    		<option value="${uid}">${tree.getNodeMap()[uid].getFirstName()} ${tree.getNodeMap()[uid].getLastName()}</option>
+					                    	</#list>
+					                    </select>
+					                  Father:
+					                    <select name="input_father" class="form-control">
+					                    	<option value=""></option>
+					                    	<#list tree.getNodeMap()?keys as uid>
+					                    		<p>${uid}</p>
+					                    		<option value="${uid}">${tree.getNodeMap()[uid].getFirstName()} ${tree.getNodeMap()[uid].getLastName()}</option>
+					                    	</#list>
+					                    </select>
+					                </p>
+			                    </form>
+			                </div>
+			                <div class="modal-footer">
+			                    <button type="button" class="submit btn btn-default" onclick="addMember()">Add Member</button>
+			                </div>
+			            </div>
 			        </div>
 			    </div>
         	</div>

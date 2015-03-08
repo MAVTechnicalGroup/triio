@@ -4,7 +4,6 @@ import org.mavtechnicalgroup.triio.data.TraditionalFamilyMember;
 import org.mavtechnicalgroup.triio.data.TraditionalTree;
 import org.mavtechnicalgroup.triio.data.Date;
 import org.mavtechnicalgroup.triio.App;
-
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,12 +16,15 @@ import org.mavtechnicalgroup.triio.file.JsonFileHandler;
 public class WebController {
 	
 	//TODO: Modify value to include the tree's UID; modify traditionalTreeFunction.js as well
-	@RequestMapping(value = "/tree/traditional/", method = RequestMethod.POST)
-	void addUser(@RequestParam("firstName") String fn, @RequestParam("lastName") String ln,
+	@RequestMapping(value = "/tree/traditional/{uid}", method = RequestMethod.POST)
+	void addTraditionalUser(@PathVariable("uid") String uid,
+				 @RequestParam("firstName") String fn, @RequestParam("lastName") String ln,
 				 @RequestParam("middleName") String mn, @RequestParam("gender") String gen,
 				 @RequestParam("dd") int day, @RequestParam("mm") int month, @RequestParam("yyyy") int year) {
 		TraditionalFamilyMember member = new TraditionalFamilyMember(fn, ln, mn, gen, new Date(day, month, year));
-		//tree.add(member);
+		TraditionalTree tree = (TraditionalTree) JsonFileHandler.readJsonFile(uid);
+		tree.add(member);
+		JsonFileHandler.writeJsonFile(tree);
 	}
 	
 	@RequestMapping(value = "/tree/traditional/create", method = RequestMethod.POST)
@@ -40,9 +42,8 @@ public class WebController {
 	@RequestMapping(value = "tree/traditional/{uid}", method = RequestMethod.GET)
 	ModelAndView loadTraditionalTree(@PathVariable("uid") String uid) {
 		TraditionalTree tree = (TraditionalTree) JsonFileHandler.readJsonFile(uid);
-		ModelAndView modelAndView = new ModelAndView("tree");
+		ModelAndView modelAndView = new ModelAndView("traditionalTree");
 		modelAndView.addObject("tree", tree);
-		System.out.println("loadTree");
 		return modelAndView;
 	}
 }
