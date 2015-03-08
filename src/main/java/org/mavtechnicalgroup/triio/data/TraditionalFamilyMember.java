@@ -88,6 +88,14 @@ public class TraditionalFamilyMember extends FamilyMember {
 		source.addChildren(this);
 	}
 	
+	public void addMother(String uid) {
+		if(mother == null)
+			mother = new ArrayList<String>();
+		if(mother.contains(uid))
+			return;
+		mother.add(uid);
+	}
+	
 	public void addFather(TraditionalFamilyMember source) {
 		if(father == null)
 			father = new ArrayList<String>();
@@ -95,6 +103,14 @@ public class TraditionalFamilyMember extends FamilyMember {
 			return;
 		father.add(source.getUID());
 		source.addChildren(this);
+	}
+	
+	public void addFather(String uid) {
+		if(father == null)
+			father = new ArrayList<String>();
+		if(father.contains(uid))
+			return;
+		father.add(uid);
 	}
 	
 	//Does not set mother/father

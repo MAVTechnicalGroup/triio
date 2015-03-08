@@ -105,7 +105,7 @@
 			                    </form>
 			                </div>
 			                <div class="modal-footer">
-			                    <button type="button" class="submit btn btn-default" onclick="addMember()">Add Member</button>
+			                    <button type="button" class="submit btn btn-default" onclick="addTraditionalFamilyMember(${tree.getUID()})">Add Member</button>
 			                </div>
 			            </div>
 			        </div>

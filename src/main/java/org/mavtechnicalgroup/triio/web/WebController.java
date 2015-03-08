@@ -20,9 +20,18 @@ public class WebController {
 	void addTraditionalUser(@PathVariable("uid") String uid,
 				 @RequestParam("firstName") String fn, @RequestParam("lastName") String ln,
 				 @RequestParam("middleName") String mn, @RequestParam("gender") String gen,
-				 @RequestParam("dd") int day, @RequestParam("mm") int month, @RequestParam("yyyy") int year) {
-		TraditionalFamilyMember member = new TraditionalFamilyMember(fn, ln, mn, gen, new Date(day, month, year));
+				 //@RequestParam("dd") int day, @RequestParam("mm") int month, @RequestParam("yyyy") int year,
+				 @RequestParam("mother") String mother, @RequestParam("father") String father) {
+		TraditionalFamilyMember member = new TraditionalFamilyMember(fn, ln, gen);
 		TraditionalTree tree = (TraditionalTree) JsonFileHandler.readJsonFile(uid);
+		if(!mother.equals("")) {
+			member.addMother(mother);
+			tree.getNodeMap().get(mother).addChildren(member);
+		}
+		if(!father.equals("")) {
+			member.addFather(father);
+			tree.getNodeMap().get(father).addChildren(member);
+		}
 		tree.add(member);
 		JsonFileHandler.writeJsonFile(tree);
 	}

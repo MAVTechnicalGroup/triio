@@ -1,29 +1,34 @@
-function addTraditionalFamilyMember() {
-	var firstName = $('#input_firstName').val();
-	var lastName = $('#input_lastName').val();
-	var middleName = $('#input_middleName').val();
-	var gender = $('#input_gender').val();
-	var dd = $('#input_day').val();
-	var mm = $('#input_month').val();
-	var yyyy = $('#input_year').val();
+function addTraditionalFamilyMember(uid) {
+	var firstName = document.getElementsByName("input_firstName")[0].value;
+	var lastName = document.getElementsByName("input_lastName")[0].value;
+	var middleName = document.getElementsByName("input_middleName")[0].value;
+	var gender = document.getElementsByName("input_gender")[0].value;
+	/*var dd = document.getElementsByName("input_day")[0].value;
+	var mm = document.getElementsByName("input_month")[0].value;
+	var yyyy = document.getElementsByName("input_year")[0].value;*/
+	
+	var mother = document.getElementsByName("input_mother")[0].value;
+	var father = document.getElementsByName("input_father")[0].value;
 	
 	if(firstName && lastName && gender) {
 		$.ajax(
 			{
 				type : "POST",
-				url : "/tree/traditional/",
+				url : "/tree/traditional/" + uid,
 				data: {
 					"firstName" : firstName,
 					"lastName" : lastName,
 					"middleName" : middleName,
 					"gender" : gender,
-					"dd" : dd,
+					/*"dd" : dd,
 					"mm" : mm,
-					"yyyy" : yyyy
+					"yyyy" : yyyy,*/
+					"mother" : mother,
+					"father" : father
 				},
 				
 				success : function(result) {
-					location.reload();
+					loadTree(uid);
 				},
 				
 				error : function(jqXHR, exception) {
