@@ -3,6 +3,7 @@ package org.mavtechnicalgroup.triio.data;
 import java.util.ArrayList;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class FraternityFamilyMember extends FamilyMember {
 	private String chapter;
@@ -152,6 +153,7 @@ public class FraternityFamilyMember extends FamilyMember {
 		b.addLittles(this);
 	}
 	
+	@JsonProperty
 	public void setBig(String s) {
 		big = s;
 	}

@@ -4,8 +4,7 @@ import org.mavtechnicalgroup.triio.data.FraternityFamilyMember;
 import org.mavtechnicalgroup.triio.data.FraternityTree;
 import org.mavtechnicalgroup.triio.data.TraditionalFamilyMember;
 import org.mavtechnicalgroup.triio.data.TraditionalTree;
-import org.mavtechnicalgroup.triio.data.Date;
-import org.mavtechnicalgroup.triio.App;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -45,15 +44,13 @@ public class WebController {
 				 @RequestParam("chapter") String chapter, @RequestParam("line") String line,
 				 @RequestParam("crossingClass") String crossingClass, @RequestParam("big") String big) {
 		FraternityFamilyMember member = new FraternityFamilyMember(fn, ln, gen);
-		System.out.println(JsonFileHandler.readJsonFile(uid));
 		FraternityTree tree = (FraternityTree) JsonFileHandler.readJsonFile(uid);
-		System.out.println(tree);
 		
 		member.setChapter(chapter);
 		member.setLine(line);
 		member.setCrossingClass(crossingClass);
 		member.setBig(big);
-
+		
 		tree.getNodeMap().get(big).addLittles(member);
 		
 		tree.add(member);

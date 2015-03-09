@@ -75,12 +75,11 @@
 									<#assign big = tree.getNodeMap()[uid].getBig()>
 									<#if big != "">
 										 ${tree.getNodeMap()[big].getFirstName()} ${tree.getNodeMap()[big].getLastName()}
-										 <p>{big}</p>
 									</#if>
 								</td>
 								<td>
 									<#list tree.getNodeMap()[uid].getLittles() as little>
-										${tree.getNodeMap()[little].getFirstName()} ${tree.getNodeMap()[little].getLastName()}
+										${tree.getNodeMap()[little].getFirstName()} ${tree.getNodeMap()[little].getLastName()}<br />
 									</#list>
 								</td>
 							</tr>
